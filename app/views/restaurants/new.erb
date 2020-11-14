@@ -1,59 +1,59 @@
 <div class="container">
   <h1>Enter a new restaurant</h1>
   <form>
-    <label>Name of Business</label>
-    <input type="text" />
+    <div class="form-group">
+      <label for="name_of_business">Name of Business</label>
+      <input type="text" name="name_of_business" class="form-control" />
+    </div>
 
-    <label>Chain</label>
-    <select name="chain">
-      McDonald's
-      <option value="starbucks">Starbucks</option>
-      <option value="taco_bell">Taco Bell</option>
-      <option value="chick_fil_a">Chick-Fil-A</option>
-      <option value="wendys">Wendy's</option>
-      <option value="burger_king">Burger King</option>
-      <option value="dunkin">Dunkin'</option>
-      <option value="panera">Panera Bread</option>
-      <option value="sonic">Sonic Drive-in</option>
-      <option value="kfc">KFC</option>
-      <option value="arbys">Arby's</option>
-      <option value="dairy_queen">Dairy Queen</option>
-      <option value="jack_in_the_box">Jack in the Box</option>
-      <option value="popeyes">Popeyes</option>
-    </select>
-    <label>
-      Or<br />
-      New chain? Enter name here:</label><input type="text">
-    <label>Category of business</label>
-    <fieldset>
-      <label>Coffee & Tea
-        <input type="checkbox">
-      </label>
-      <label>Chicken
-        <input type="checkbox">
-      </label>
-      <label>Sandwich
-        <input type="checkbox">
-      </label>
-      <label>Burgers
-        <input type="checkbox">
-      </label>
-      <label>Ice Cream
-        <input type="checkbox">
-      </label>
-      <label>Tacos
-        <input type="checkbox">
-      </label>
-    </fieldset>
-    <label>Address</label>
-    <textarea>
-    </textarea>
-    <label>Phone Number <input type="tel" /></label>
+    <div class="form-group">
+      <label for="chain">Chain</label>
+      <select name="chain" class="form-control mb-2">
+        <option value="mcdonalds">McDonald's</option>
+        <option value="starbucks">Starbucks</option>
+        <option value="taco_bell">Taco Bell</option>
+        <option value="chick_fil_a">Chick-Fil-A</option>
+        <option value="wendys">Wendy's</option>
+        <option value="burger_king">Burger King</option>
+        <option value="dunkin">Dunkin'</option>
+        <option value="panera">Panera Bread</option>
+        <option value="sonic">Sonic Drive-in</option>
+        <option value="kfc">KFC</option>
+        <option value="arbys">Arby's</option>
+        <option value="dairy_queen">Dairy Queen</option>
+        <option value="jack_in_the_box">Jack in the Box</option>
+        <option value="popeyes">Popeyes</option>
+      </select>
+      <label>New chain? Enter name here:</label><input name="new_chain" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="business_category">Category of business</label>
+      <select multiple class="form-control" name="business_category">
+        <option>Coffee & Tea</option>
+        <option>Chicken</option>
+        <option>Sandwich</option>
+        <option>Burgers</option>
+        <option>Ice Cream</option>
+        <option>Tacos</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea name="address" class="form-control">
+      </textarea>
+    </div>
+
+    <div class="form-group">
+    <label for="phone_number">Phone Number <input name="phone_number" type="tel" class="form-control" /></label>
+    </div>
+
     <fieldgroup>
-      <label>Hours of Operation</label>
-      <textarea id="hours"></textarea>
-      <div id="hours-test"></div>
+      <label for="hours">Hours of Operation</label>
+      <textarea name="hours" class="form-control mb-5"></textarea>
     </fieldgroup>
+
     <input type="submit" />
   </form>
 </div>
