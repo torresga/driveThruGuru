@@ -1,0 +1,153 @@
+<div class="container">
+  <header>
+    <h1><%= @restaurant.name %></h1>
+    <iframe
+    width="600"
+    height="450"
+    frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>
+      &q=<%= @restaurant.name %> <%= @restaurant.address %>" allowfullscreen>
+    </iframe>
+    <div><%= @restaurant.address %></div>
+    <div><%= @restaurant.phone_number %></div>
+    <div>
+      <%= @restaurant.hours_of_operation %>
+    </div>
+      <div>
+        <h3>Popular times</h3>
+      </div>
+      <div><button>Write a Review</button><button>Add Photos</button></div>
+      <div>
+        <h3>User Photos</h3>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://placeholder.pics/svg/600x300" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="https://placeholder.pics/svg/600x300" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="https://placeholder.pics/svg/600x300" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="card">
+        <h4 class="card-title">User keywords for this location</h4>
+        <div class="card-body">
+          <button>Has the best coffee</button>
+          <button>Dirty bathrooms</button>
+          <button>Unsafe area</button>
+        </div>
+      </div>
+  </header>
+  <main>
+    <h2>Reviews</h2>
+    <div class="review">
+      <div class="row">
+        <div class="col">
+          <div class="media">
+            <img src="https://placeholder.pics/svg/100" class="mr-3" alt="person avatar">
+            <div class="media-body">
+              <h5 class="mt-0">Name of person</h5>
+              <ul>
+                <li>Location of person</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h6>Date</h6>
+          <div>
+            <h6>overall rating</h6>
+            <h6>Keywords</h6>
+            <ul>
+              <li>No green tea</li>
+              <li>closes earlier than website</li>
+              <li>best bagels</li>
+            </ul>
+          </div>
+          <div>
+            <p>Bacon ipsum dolor amet ribeye bacon tenderloin, corned beef t-bone ball tip jowl. Salami shank alcatra bresaola fatback prosciutto. Shankle biltong bresaola, doner leberkas spare ribs venison ham hock sirloin cupim ribeye buffalo. Flank pork loin pork chop picanha burgdoggen andouille, rump shankle tenderloin t-bone sausage turducken short loin pig.</p>
+
+            <p>Drumstick short ribs swine ham pig pork venison chuck turkey jerky hamburger shank filet mignon t-bone bacon. Venison cupim leberkas salami, fatback pancetta sausage strip steak. Alcatra meatball rump kevin, tenderloin t-bone chuck pork belly bacon ribeye chicken pig tail. Capicola prosciutto drumstick kielbasa t-bone turkey shankle tail corned beef shoulder bacon ribeye.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="review">
+      <div class="row">
+        <div class="col">
+          <div class="media">
+            <img src="https://placeholder.pics/svg/100" class="mr-3" alt="person avatar">
+            <div class="media-body">
+              <h5 class="mt-0">Name of person</h5>
+              <ul>
+                <li>Location of person</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h6>Date</h6>
+          <div>
+            <h6>overall rating</h6>
+            <h6>Keywords</h6>
+            <ul>
+              <li>No green tea</li>
+              <li>closes earlier than website</li>
+              <li>best bagels</li>
+            </ul>
+          </div>
+          <div>
+            <p>Bacon ipsum dolor amet ribeye bacon tenderloin, corned beef t-bone ball tip jowl. Salami shank alcatra bresaola fatback prosciutto. Shankle biltong bresaola, doner leberkas spare ribs venison ham hock sirloin cupim ribeye buffalo. Flank pork loin pork chop picanha burgdoggen andouille, rump shankle tenderloin t-bone sausage turducken short loin pig.</p>
+
+            <p>Drumstick short ribs swine ham pig pork venison chuck turkey jerky hamburger shank filet mignon t-bone bacon. Venison cupim leberkas salami, fatback pancetta sausage strip steak. Alcatra meatball rump kevin, tenderloin t-bone chuck pork belly bacon ribeye chicken pig tail. Capicola prosciutto drumstick kielbasa t-bone turkey shankle tail corned beef shoulder bacon ribeye.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="review">
+      <div class="row">
+        <div class="col">
+          <div class="media">
+            <img src="https://placeholder.pics/svg/100" class="mr-3" alt="person avatar">
+            <div class="media-body">
+              <h5 class="mt-0">Name of person</h5>
+              <ul>
+                <li>Location of person</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h6>Date</h6>
+          <div>
+            <h6>overall rating</h6>
+            <h6>Keywords</h6>
+            <ul>
+              <li>No green tea</li>
+              <li>closes earlier than website</li>
+              <li>best bagels</li>
+            </ul>
+          </div>
+          <div>
+            <p>Bacon ipsum dolor amet ribeye bacon tenderloin, corned beef t-bone ball tip jowl. Salami shank alcatra bresaola fatback prosciutto. Shankle biltong bresaola, doner leberkas spare ribs venison ham hock sirloin cupim ribeye buffalo. Flank pork loin pork chop picanha burgdoggen andouille, rump shankle tenderloin t-bone sausage turducken short loin pig.</p>
+
+            <p>Drumstick short ribs swine ham pig pork venison chuck turkey jerky hamburger shank filet mignon t-bone bacon. Venison cupim leberkas salami, fatback pancetta sausage strip steak. Alcatra meatball rump kevin, tenderloin t-bone chuck pork belly bacon ribeye chicken pig tail. Capicola prosciutto drumstick kielbasa t-bone turkey shankle tail corned beef shoulder bacon ribeye.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</div>
