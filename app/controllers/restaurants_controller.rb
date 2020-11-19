@@ -17,12 +17,26 @@ class RestaurantsController < ApplicationController
     render 'new'
   end
 
-  def update
+  def edit
+    @restaurant = Restaurant.find(params[:id])
   end
 
-  def edit
+  def update
+    @restaurant = Restaurant.find(params[:id])
+
+    p restaurant_params
+
+    @restaurant.update(restaurant_params)
+
+    redirect_to @restaurant
   end
 
   def delete
+  end
+
+  private
+
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :chain, :address, :phone_number, :hours_of_operation)
   end
 end

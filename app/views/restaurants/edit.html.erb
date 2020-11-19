@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>Enter a new restaurant</h1>
+  <%= form_with(model: @restaurant, local: true) do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :chain %>
+      <%= f.select :chain, options_for_select([
+      ["McDonald's", 'mcdonalds'],
+      ["Starbucks", 'starbucks'],
+      ["Taco Bell", 'taco_bell'],
+      ["Chick-fil-A", 'chick_fil_a'],
+      ["Wendy's", 'wendys'],
+      ["Burger King", 'burger_king'],
+      ["Dunkin'", 'dunkin'],
+      ["Panera Bread", 'panera'],
+      ["Sonic Drive-in", 'sonic'],
+      ["KFC", 'kfc'],
+      ["Arby's", 'arbys'],
+      ["Dairy Queen", 'dairy_queen'],
+      ["Jack In The Box", 'jack_in_the_box'],
+      ["Popeyes", 'popeyes'],
+      ["Other", 'other']
+      ]), class: 'form-control mb-2' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :business_category %>
+      <%= f.select "categories", options_for_select(["Coffee & Tea", "Chicken", "Sandwich", "Burgers", "Ice Cream", "Tacos"]), multiple: true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address %>
+      <%= f.text_field :address, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :hours_of_operation %>
+      <%= f.text_area :hours_of_operation, class: 'form-control mb-5' %>
+    </div>
+
+    <%= submit_tag 'Edit Restaurant' %>
+  <% end %>
+</div>
