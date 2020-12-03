@@ -29,7 +29,7 @@
 
     <div class="form-group">
       <%= f.label :business_category %>
-      <%= f.select "categories", options_for_select(["Coffee & Tea", "Chicken", "Sandwich", "Burgers", "Ice Cream", "Tacos"]), multiple: true, class: 'form-control' %>
+      <%= f.select :category, Category.all, multiple: true, class: 'form-control' %>
     </div>
 
     <div class="form-group">

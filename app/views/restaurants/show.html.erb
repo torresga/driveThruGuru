@@ -1,6 +1,11 @@
 <div class="container">
   <header>
     <h1><%= @restaurant.name %></h1>
+    <ul>
+    <% @restaurant.categories.map do |category| %>
+      <li><%= category.name %></li>
+    <% end %>
+    </ul>
     <iframe
     width="600"
     height="450"

@@ -1,53 +1,89 @@
 <div class="container">
   <h1>Enter a new restaurant</h1>
-  <%= form_for @restaurant, url: { action: "create" } do |f| %>
+  <%= form_with(model: @restaurant, local: true) do |f| %>
     <div class="form-group">
-      <label for="name_of_business">Name of Business</label>
-      <input type="text" name="name_of_business" class="form-control" />
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <label for="chain">Chain</label>
-      <select name="chain" class="form-control mb-2">
-        <option value="mcdonalds">McDonald's</option>
-        <option value="starbucks">Starbucks</option>
-        <option value="taco_bell">Taco Bell</option>
-        <option value="chick_fil_a">Chick-Fil-A</option>
-        <option value="wendys">Wendy's</option>
-        <option value="burger_king">Burger King</option>
-        <option value="dunkin">Dunkin'</option>
-        <option value="panera">Panera Bread</option>
-        <option value="sonic">Sonic Drive-in</option>
-        <option value="kfc">KFC</option>
-        <option value="arbys">Arby's</option>
-        <option value="dairy_queen">Dairy Queen</option>
-        <option value="jack_in_the_box">Jack in the Box</option>
-        <option value="popeyes">Popeyes</option>
-        <option value="other">Other</option>
-      </select>
-      <label>New chain? Enter name here:</label><input name="new_chain" type="text" class="form-control" />
+      <%= f.label :chain %>
+      <%= f.select :chain, options_for_select([
+      ["McDonald's", 'mcdonalds'],
+      ["Starbucks", 'starbucks'],
+      ["Taco Bell", 'taco_bell'],
+      ["Chick-fil-A", 'chick_fil_a'],
+      ["Wendy's", 'wendys'],
+      ["Burger King", 'burger_king'],
+      ["Dunkin'", 'dunkin'],
+      ["Panera Bread", 'panera'],
+      ["Sonic Drive-in", 'sonic'],
+      ["KFC", 'kfc'],
+      ["Arby's", 'arbys'],
+      ["Dairy Queen", 'dairy_queen'],
+      ["Jack In The Box", 'jack_in_the_box'],
+      ["Popeyes", 'popeyes'],
+      ["Other", 'other']
+      ]), class: 'form-control mb-2' %>
     </div>
 
     <div class="form-group">
-      <label for="business_category">Category of business</label>
-      <%= select_tag "categories", options_for_select(["Coffee & Tea", "Chicken", "Sandwich", "Burgers", "Ice Cream", "Tacos"]), multiple: true, class: 'form-control' %>
+      <%= f.label :categories %>
+      <%= f.select :categories, options_for_select(Category.all), {include_hidden: false}, {multiple: true, class: 'form-control'} %>
     </div>
 
     <div class="form-group">
-      <label for="address">Address</label>
-      <textarea name="address" class="form-control">
-      </textarea>
+      <%= f.label :address %>
+      <%= f.text_field :address, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-    <label for="phone_number">Phone Number <input name="phone_number" type="tel" class="form-control" /></label>
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number, class: 'form-control' %>
     </div>
 
-    <fieldgroup>
-      <label for="hours">Hours of Operation</label>
-      <textarea name="hours" class="form-control mb-5"></textarea>
-    </fieldgroup>
-
-    <%= submit_tag 'Add a Restaurant' %>
+    <div class="form-group">
+      <%= f.label :business_hours, "Hours of Operation" %>
+      <div class="form-group">
+        <%= f.fields_for :business_hours do |hours| %>
+        <div class="form-group">
+          <%= hours.label :day, hours.object.day %>
+          <%= hours.hidden_field :day, value: hours.object.day %>
+          <%= hours.select :open_at, options_for_select([
+            ["12AM"], ["1AM"],
+            ["2AM"], ["3AM"],
+            ["4AM"], ["5AM"],
+            ["6AM"], ["7AM"],
+            ["8AM"], ["9AM"],
+            ["10AM"], ["11AM"],
+            ["12PM"], ["1PM"],
+            ["2PM"], ["3PM"],
+            ["4PM"], ["5PM"],
+            ["6PM"], ["7PM"],
+            ["8PM"], ["9PM"],
+            ["10PM"], ["11PM"],
+            ["12AM (next day)"]
+            ]), class: 'form-control' %>
+          <span>to</span>
+          <%= hours.select :close_at, options_for_select([
+              ["12AM"], ["1AM"],
+              ["2AM"], ["3AM"],
+              ["4AM"], ["5AM"],
+              ["6AM"], ["7AM"],
+              ["8AM"], ["9AM"],
+              ["10AM"], ["11AM"],
+              ["12PM"], ["1PM"],
+              ["2PM"], ["3PM"],
+              ["4PM"], ["5PM"],
+              ["6PM"], ["7PM"],
+              ["8PM"], ["9PM"],
+              ["10PM"], ["11PM"],
+              ["12AM (next day)"]
+              ]), class: 'form-control' %>
+              </div>
+          <% end %>
+      </div>
+    </div>
+    <%= submit_tag 'New Restaurant' %>
   <% end %>
 </div>
