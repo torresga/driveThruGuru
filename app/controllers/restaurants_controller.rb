@@ -22,15 +22,11 @@ class RestaurantsController < ApplicationController
       categories: restaurant_params[:categories].map { |category| Category.find_by(name: category) }
       )
 
-      # @restaurant.business_hours.each do |day|
-      #   restaurant_params[:business_hours_attributes].values.each do |day_params|
-      #     # have to turn open_at and close at to a date
-      #     day.update()
-      #   end
-      # end
+    restaurant_params[:business_hours_attributes].values.each do |day_params|
+      @restaurant.business_hours.build(day_params)
+    end
 
     @restaurant.save
-    # @restaurant.business_hours.save
     render 'restaurants/new'
   end
 

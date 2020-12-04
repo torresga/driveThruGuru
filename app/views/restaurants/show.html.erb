@@ -18,6 +18,26 @@
     <div>
       <%= @restaurant.hours_of_operation %>
     </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Day of the Week</th>
+            <th>Opens At</th>
+            <th>Closes At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @restaurant.business_hours.each do |day| %>
+          <tr>
+            <td><%= day.day %></td>
+            <td><%= day.open_at.strftime("%H:%M %p") %></td>
+            <td><%= day.close_at.strftime("%H:%M %p") %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
       <div>
         <h3>Popular times</h3>
       </div>
