@@ -9,8 +9,6 @@ class RestaurantsController < ApplicationController
     %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday).each do |day|
       @restaurant.business_hours.build(day: day)
     end
-
-    puts @restaurant.business_hours
   end
 
   def create
