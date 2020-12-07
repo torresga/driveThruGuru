@@ -37,7 +37,17 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
 
-    @restaurant.update(restaurant_params)
+    @restaurant.update(
+      name: restaurant_params[:name],
+      chain: restaurant_params[:chain],
+      address: restaurant_params[:address],
+      phone_number: restaurant_params[:phone_number],
+      categories: restaurant_params[:categories].map { |category| Category.find_by(name: category) }
+    )
+
+    restaurant_params[:business_hours_attributes].values.each_with_index do |day_params, index|
+      @restaurant.business_hours[index].update(day_params)
+    end
 
     redirect_to @restaurant
   end
