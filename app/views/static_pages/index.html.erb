@@ -1,0 +1,52 @@
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">FastFoodGuru</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link active" href="#">Home</a>
+        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main role="main" class="inner cover">
+    <%= form_with(url: "/search", method: "get") do |f| %>
+      <div class="form-group">
+        <%= f.label :chain %>
+        <%= f.select 'restaurant[chain]', options_for_select([
+        ["McDonald's", 'mcdonalds'],
+        ["Starbucks", 'starbucks'],
+        ["Taco Bell", 'taco_bell'],
+        ["Chick-fil-A", 'chick_fil_a'],
+        ["Wendy's", 'wendys'],
+        ["Burger King", 'burger_king'],
+        ["Dunkin'", 'dunkin'],
+        ["Panera Bread", 'panera'],
+        ["Sonic Drive-in", 'sonic'],
+        ["KFC", 'kfc'],
+        ["Arby's", 'arbys'],
+        ["Dairy Queen", 'dairy_queen'],
+        ["Jack In The Box", 'jack_in_the_box'],
+        ["Popeyes", 'popeyes'],
+        ["Other", 'other']
+        ]), class: 'form-control mb-2' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :categories %>
+        <%= f.select 'restaurant[categories]', options_for_select(Category.all), {include_hidden: false}, {class: 'form-control'} %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address %>
+        <%= f.text_field 'restaurant[address]', class: 'form-control' %>
+      </div>
+
+      <%= f.submit 'Find A Restaurant' %>
+    <% end %>
+  </main>
+
+  <footer class="mastfoot mt-auto">
+  </footer>
+</div>
