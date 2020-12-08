@@ -34,8 +34,8 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :categories %>
-        <%= f.select 'restaurant[categories]', options_for_select(Category.all), {include_hidden: false}, {class: 'form-control'} %>
+        <%= f.label :name, "Categories" %>
+        <%= f.select 'restaurant[name]', options_for_select(Category.all), {include_hidden: false}, {class: 'form-control'} %>
       </div>
 
       <div class="form-group">
