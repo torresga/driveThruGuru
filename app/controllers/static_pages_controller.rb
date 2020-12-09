@@ -22,7 +22,7 @@ class StaticPagesController < ApplicationController
 
     queries = queries.join(" AND ")
 
-    @restaurants = Restaurant.joins(:categories).where(queries, *non_empty_params.values)
+    @search = Restaurant.joins(:categories).where(queries, *non_empty_params.values)
   end
 
   private
