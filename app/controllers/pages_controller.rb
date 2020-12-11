@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+class PagesController < ApplicationController
   def index
   end
 
@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
     non_empty_params = search_params.select {|key, value| value != "" }
 
     if non_empty_params.has_key?("address")
-      non_empty_params["address"] = "%#{non_empty_params["address"]}%"
+      non_empty_params["address"] = "%#{non_empty_params["address"].downcase}%"
     end
 
     non_empty_params.each do |key, value|
