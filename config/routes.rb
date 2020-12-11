@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   get '/search', to: 'pages#search'
   resources :restaurants
+  resources :users
 end
