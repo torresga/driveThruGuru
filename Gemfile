@@ -25,6 +25,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'tod'
+gem 'bcrypt'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
