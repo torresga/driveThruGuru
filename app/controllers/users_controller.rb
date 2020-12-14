@@ -8,10 +8,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
-    user.save
+    @user = User.create(user_params)
+    @user.save
 
-    render 'show'
+    redirect_to @user
   end
 
   def edit
@@ -26,6 +26,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :avatar, :location)
+    params.require(:user).permit(:name, :email, :avatar, :location, :password, :password_confirmation)
   end
 end
