@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Enter a new user</h1>
+  <h1>Edit your profile</h1>
   <%= form_with(model: @user, local: true) do |f| %>
     <div class="form-group">
       <%= f.label :name %>
@@ -31,6 +31,6 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
     </div>
 
-    <%= f.submit 'Create user' %>
+    <%= f.submit 'Save changes' %>
   <% end %>
 </div>
