@@ -12,6 +12,19 @@
   </head>
 
   <body>
+    <header class="container">
+      <div class="row">
+        <div class="col-sm">
+          <ul>
+            <% if logged_in? %>
+              <li><%= link_to "Log out", logout_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "Log in", login_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </header>
     <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>
