@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>New review for </h1>
+  <%= form_with(model: @review, local: true) do |f| %>
+
+  <%= f.hidden_field :restaurant_id, value: params[:restaurant_id] %>
+  <%= f.hidden_field :user_id, value: params[:user_id] %>
+
+  <div class="form-group">
+    <%= f.label :rating %>
+    <%= f.select :rating, options_for_select([
+      ["1 star"],
+      ["2 stars"],
+      ["3 stars"],
+      ["4 stars"],
+      ["5 stars"]
+      ]), class: 'form-control mb-2' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :keywords %>
+    </div>
+
+    <%= f.submit "Post review" %>
+  <% end %>
+</div>

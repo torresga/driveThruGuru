@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one_attached :avatar
+  has_many :reviews
 
   before_save :downcase_email
   validates :name, presence: true, length: { minimum: 1 }
