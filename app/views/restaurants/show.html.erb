@@ -41,7 +41,9 @@
       <div>
         <h3>Popular times</h3>
       </div>
-      <div><button>Write a Review</button><button>Add Photos</button></div>
+      <div>
+        <%= link_to "Write a Review", new_review_path(restaurant_id: params[:id]) %>
+        <button>Add Photos</button></div>
       <div>
         <h3>User Photos</h3>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

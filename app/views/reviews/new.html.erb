@@ -3,7 +3,6 @@
   <%= form_with(model: @review, local: true) do |f| %>
 
   <%= f.hidden_field :restaurant_id, value: params[:restaurant_id] %>
-  <%= f.hidden_field :user_id, value: params[:user_id] %>
 
   <div class="form-group">
     <%= f.label :rating %>
