@@ -25,6 +25,11 @@
       <%= f.text_field :tag_list %>
     </div>
 
+    <div class="form-group">
+      <%= f.label :images %>
+      <%= f.file_field :images, multiple: true %>
+    </div>
+
     <%= f.submit "Post review" %>
   <% end %>
 </div>

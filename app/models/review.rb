@@ -7,4 +7,5 @@ class Review < ApplicationRecord
   validates :body, presence: true
 
   acts_as_taggable
+  has_many_attached :images
 end
