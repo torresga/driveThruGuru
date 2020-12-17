@@ -5,4 +5,6 @@ class Review < ApplicationRecord
   validates :user_id, presence: true
   validates :restaurant_id, presence: true
   validates :body, presence: true
+
+  acts_as_taggable
 end

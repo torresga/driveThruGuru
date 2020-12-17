@@ -71,9 +71,11 @@
       <div class="card">
         <h4 class="card-title">User keywords for this location</h4>
         <div class="card-body">
-          <button>Has the best coffee</button>
-          <button>Dirty bathrooms</button>
-          <button>Unsafe area</button>
+          <ul>
+            <% tag_cloud @restaurant.reviews.tag_counts, [] do |tag, _| %>
+            <li><%= tag.name %></li>
+            <% end %>
+          </ul>
         </div>
       </div>
   </header>
@@ -100,9 +102,9 @@
             <h6>overall rating</h6>
             <h6>Keywords</h6>
             <ul>
-              <li>No green tea</li>
-              <li>closes earlier than website</li>
-              <li>best bagels</li>
+            <% review.tag_list.each do |tag| %>
+              <li><%= tag %></li>
+            <% end %>
             </ul>
           </div>
           <div>
