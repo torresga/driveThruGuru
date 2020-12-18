@@ -1,11 +1,11 @@
-<div class="container">
-  <header>
+<div class="container-fluid">
+  <header class="restaurant_header">
     <h1><%= @restaurant.name %></h1>
-    <ul>
-    <% @restaurant.categories.map do |category| %>
-      <li><%= category.name %></li>
-    <% end %>
-    </ul>
+    <div>
+      <% @restaurant.categories.map(&:name).each do |category| %>
+      <span><%= link_to category, search_path({restaurant: {name: category}}) %>, </span>
+      <% end %>
+    </div>
     <iframe
     width="600"
     height="450"
@@ -13,12 +13,15 @@
     src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>
       &q=<%= @restaurant.name %> <%= @restaurant.address %>" allowfullscreen>
     </iframe>
-    <div><%= @restaurant.address %></div>
-    <div><%= @restaurant.phone_number %></div>
-    <div>
-      <%= @restaurant.hours_of_operation %>
-    </div>
-    <div>
+
+    <section>
+      <h2>Location and Hours</h2>
+    <div class="row">
+      <div class="col">
+        <div><%= @restaurant.address %></div>
+        <div><%= @restaurant.phone_number %></div>
+      </div>
+      <div class="col">
       <table>
         <thead>
           <tr>
@@ -38,27 +41,30 @@
         </tbody>
       </table>
       </div>
-      <div>
-        <h3>Popular times</h3>
       </div>
+      </section>
       <div>
-        <%= link_to "Write a Review", new_review_path(restaurant_id: params[:id]) %>
-      <div>
-        <h3>User Photos</h3>
-        <% @restaurant.reviews.select { |review| review.images.attached? }.map { |review| review.images }.flatten.each do |image| %>
-          <%= image_tag(image) %>
-        <% end %>
-      </div>
-      <div class="card">
-        <h4 class="card-title">User keywords for this location</h4>
+        <%= link_to "Write a Review", new_review_path(restaurant_id: params[:id]), class: 'btn btn-primary mt-3 mb-3' %>
+
+      <div class="card mb-3">
         <div class="card-body">
-          <ul>
+          <h5 class="card-title">What users said about this location...</h5>
+          <ul class="tag_list">
             <% tag_cloud @restaurant.reviews.tag_counts, [] do |tag, _| %>
-            <li><%= tag.name %></li>
+            <li class="tag_item"><%= tag.name %></li>
             <% end %>
           </ul>
         </div>
       </div>
+
+      <% if @restaurant.reviews.select { |review| review.images.attached? }.count > 0 %>
+      <div>
+        <h2>User Photos</h2>
+        <% @restaurant.reviews.select { |review| review.images.attached? }.map { |review| review.images }.flatten.each do |image| %>
+          <%= image_tag image, size: "200x200", class: 'img-thumbnail' %>
+        <% end %>
+      </div>
+      <% end %>
   </header>
   <main>
     <h2>Reviews</h2>
@@ -68,34 +74,38 @@
       <div class="row">
         <div class="col">
           <div class="media">
-            <%= image_tag(review.user.avatar) %>
-            <div class="media-body">
-              <h5 class="mt-0"><%= review.user.name %></h5>
-              <ul>
-                <li><%= review.user.location %></li>
-              </ul>
+            <%= image_tag review.user.avatar, size: "75x75" %>
+            <div class="media-body ml-3">
+              <p class="mt-0 font-weight-bold"><%= link_to review.user.name, user_path(review.user) %></p>
+              <p class="mt-n3"><%= review.user.location %></p>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <h6><%= review.user.created_at %></h6>
-          <div>
-            <h6>overall rating</h6>
-            <h6>Keywords</h6>
-            <ul>
-            <% review.tag_list.each do |tag| %>
-              <li><%= tag %></li>
+          <div class="review-body mt-3">
+            <div>
+              <span><%= review.user.created_at.strftime("%F") %></span>
+              <span>overall rating</span>
+            </div>
+
+            <% if review.tag_list.count > 0 %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <ul class="tag_list">
+                <% review.tag_list.each do |tag| %>
+                  <li class="tag_item"><%= tag %></li>
+                <% end %>
+                </ul>
+              </div>
+            </div>
             <% end %>
-            </ul>
-          </div>
-          <div>
-            <%= review.body %>
+            <div>
+              <%= review.body %>
+            </div>
           </div>
 
           <% if review.images.attached? %>
           <div>
             <% review.images.each do |image| %>
-              <%= image_tag(image) %>
+              <%= image_tag image, size: "500x500" %>
             <% end %>
           </div>
           <% end %>

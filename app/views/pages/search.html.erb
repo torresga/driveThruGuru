@@ -1,24 +1,42 @@
-<div class="search-results">
+<main>
+  <!-- Map -->
+  <section class="container">
    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24467.87223835808!2d-75.17777022450444!3d39.952929630903206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6c62f36fbe869%3A0xa436e1d13cf7c05b!2sCenter%20City%2C%20Philadelphia%2C%20PA!5e0!3m2!1sen!2sus!4v1605185235733!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-   <ol class="list-of-restaurants">
+   </section>
+   <!-- End Map -->
+   <!-- Search results -->
+   <section class="container">
+   <ol class="search_results">
      <% @search.each do |restaurant| %>
-     <li>
-       <img src="https://placeholder.pics/svg/100" alt="placeholder pic" class="img-thumbnail" />
-       <div>__ miles away</div>
-       <h3><%= link_to restaurant.name, restaurant_path(restaurant.id) %></h3>
-       <div>Overall Rating</div>
+     <li class="search_result">
+      <div class="restaurant_info">
+        <h2><%= link_to restaurant.name, restaurant_path(restaurant.id) %></h2>
+        <div>
+          <% restaurant.categories.map(&:name).each do |category| %>
+          <span><%= link_to category, search_path({restaurant: {name: category}}) %>, </span>
+          <% end %>
+        </div>
+        <div>__ miles away</div>
+        <div>Overall Rating (<%= restaurant.reviews.count %> reviews)</div>
        <div><%= restaurant.address %></div>
+       <div><%= restaurant.phone_number %></div>
+       </div>
+
+       <% if restaurant.reviews.tag_counts.count > 0 %>
        <div class="card">
-         <h5 class="card-title">Things to Know</h5>
          <div class="card-body">
-           <button>Always dirty</button>
-           <button>Runs out of green tea</button>
-           <button>Closes early</button>
-           <button>Best blueberry muffins</button>
+           <h5 class="card-title">What users said about this location...</h5>
+           <ul class="tag_list">
+             <% tag_cloud restaurant.reviews.tag_counts, [] do |tag, _| %>
+             <li class="tag_item"><%= tag.name %></li>
+             <% end %>
+           </ul>
          </div>
        </div>
+       <% end %>
      </li>
      <% end %>
    </ol>
- </div>
-</div>
+   </section>
+   <!-- End Search Results -->
+</main>
