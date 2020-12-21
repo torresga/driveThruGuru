@@ -1,5 +1,7 @@
 <div class="container">
-  <h1>New review for </h1>
+  <div class="row">
+    <div class="col">
+  <h1>Write a review</h1>
   <%= form_with(model: @review, local: true) do |f| %>
 
   <%= f.hidden_field :restaurant_id, value: params[:restaurant_id] %>
@@ -12,24 +14,26 @@
       ["3 stars", 3.0],
       ["4 stars", 4.0],
       ["5 stars", 5.0]
-      ]), class: 'form-control mb-2' %>
+      ]), class: 'form-control' %>
     </div>
 
     <div class="form-group">
       <%= f.label :body %>
-      <%= f.text_area :body %>
+      <%= f.text_area :body, class: 'form-control' %>
     </div>
 
     <div class="form-group">
       <%= f.label :tag_list, "Keywords (separated by commas)" %>
-      <%= f.text_field :tag_list %>
+      <%= f.text_field :tag_list, class: 'form-control' %>
     </div>
 
     <div class="form-group">
       <%= f.label :images %>
-      <%= f.file_field :images, multiple: true %>
+      <%= f.file_field :images, multiple: true, class: 'form-control' %>
     </div>
 
     <%= f.submit "Post review" %>
   <% end %>
+  </div>
+  </div>
 </div>
