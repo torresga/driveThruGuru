@@ -5,6 +5,10 @@
       <% @restaurant.categories.map(&:name).each do |category| %>
       <span><%= link_to category, search_path({restaurant: {name: category}}) %>, </span>
       <% end %>
+
+      <% if total_ratings(@restaurant.reviews) > 0 %>
+        <div>Overall Rating: <%= average_rating(sum_of_ratings(@restaurant.reviews), total_ratings(@restaurant.reviews))  %></div>
+      <% end %>
     </div>
     <iframe
     width="600"
@@ -83,7 +87,9 @@
           <div class="review-body mt-3">
             <div>
               <span><%= review.user.created_at.strftime("%F") %></span>
-              <span>overall rating</span>
+              <% if review.rating %>
+                <span>Rating: <%= review.rating.rating %></span>
+              <% end %>
             </div>
 
             <% if review.tag_list.count > 0 %>

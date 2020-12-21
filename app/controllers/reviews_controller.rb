@@ -11,10 +11,9 @@ class ReviewsController < ApplicationController
         user_id: current_user.id
       )
 
-      p review_params[:images]
-
       @review.images.attach(review_params[:images])
       @review.tag_list = review_params[:tag_list]
+      @review.rating = Rating.create(rating: review_params[:rating])
       @review.save
 
       redirect_to(restaurant_path(review_params[:restaurant_id]))

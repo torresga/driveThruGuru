@@ -17,7 +17,9 @@
           <% end %>
         </div>
         <div>__ miles away</div>
-        <div>Overall Rating (<%= restaurant.reviews.count %> reviews)</div>
+        <% if total_ratings(restaurant.reviews) > 0 %>
+          <div>Overall Rating: <%= average_rating(sum_of_ratings(restaurant.reviews), total_ratings(restaurant.reviews))  %> (<%= restaurant.reviews.count %> reviews)</div>
+        <% end %>
        <div><%= restaurant.address %></div>
        <div><%= restaurant.phone_number %></div>
        </div>
