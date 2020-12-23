@@ -25,7 +25,7 @@
             ["Jack In The Box", 'jack_in_the_box'],
             ["Popeyes", 'popeyes'],
             ["Other", 'other']
-            ]), class: 'form-control' %>
+            ]), {include_blank: true, class: 'form-control'} %>
 					</div>
 				</div>
 				<div class="col-md-3">
@@ -33,7 +33,7 @@
 						<div class="input-group-prepend">
 							<%= label_tag :name, "Categories" %>
 						</div>
-						<%= select_tag 'restaurant[name]', options_for_select(Category.all), {class: 'form-control'} %>
+						<%= select_tag 'restaurant[name]', options_for_select(Category.all), {include_blank: true, class: 'form-control'} %>
 					</div>
 				</div>
 				<div class="col-md-3">
