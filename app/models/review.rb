@@ -1,7 +1,7 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
-  has_one :rating
+  has_one :rating, dependent: :destroy
 
   validates :user_id, presence: true
   validates :restaurant_id, presence: true

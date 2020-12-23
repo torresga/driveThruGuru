@@ -117,7 +117,7 @@
           <% end %>
         </div>
         <div class="col">
-        <% if current_user?(review.user) %>
+        <% if current_user?(review.user) || current_user.admin? %>
           <%= link_to "delete", review, method: :delete,
                                 data: { confirm: "You sure?" }, class: "btn btn-primary" %>
         <% end %>
