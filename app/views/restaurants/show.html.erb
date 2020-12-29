@@ -1,6 +1,10 @@
 <div class="container-fluid">
   <header class="restaurant_header">
     <h1><%= @restaurant.name %></h1>
+    <% if logged_in? && current_user.admin? %>
+      <%= link_to "delete", @restaurant, method: :delete,
+                          data: { confirm: "You sure?" }, class: "btn btn-danger" %>
+    <% end %>
     <div>
       <% @restaurant.categories.map(&:name).each do |category| %>
       <span><%= link_to category, search_path({restaurant: {name: category}}) %>, </span>
@@ -119,7 +123,7 @@
         <div class="col">
         <% if current_user?(review.user) || current_user.admin? %>
           <%= link_to "delete", review, method: :delete,
-                                data: { confirm: "You sure?" }, class: "btn btn-primary" %>
+                                data: { confirm: "You sure?" }, class: "btn btn-danger" %>
         <% end %>
         </div>
       </div>

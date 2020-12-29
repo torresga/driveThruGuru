@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+  before_action :admin_user, only: :destroy
+
   def show
     @restaurant = Restaurant.find(params[:id])
   end
