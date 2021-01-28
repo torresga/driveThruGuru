@@ -54,12 +54,7 @@
     <section>
       <h2>Or search by category</h2>
       <div class="row">
-      <% Category.all.map(&:name).each do |category| %>
-        <div class="col-md-4">
-          <img src="https://placeholder.pics/svg/300" alt="..." class="img-thumbnail">
-          <h3><%= link_to category, search_path({restaurant: {name: category}}) %></h3>
-        </div>
-      <% end %>
+        <%= render 'category_photos' %>
       </div>
     </section>
 	</main>
