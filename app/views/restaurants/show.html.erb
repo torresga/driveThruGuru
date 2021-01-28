@@ -120,12 +120,12 @@
           </div>
           <% end %>
         </div>
-        <div class="col">
-        <% if current_user?(review.user) || current_user.admin? %>
-          <%= link_to "delete", review, method: :delete,
+        <!-- <div class="col">
+        <%# <% if current_user?(review.user) || current_user.admin? %> %>
+          <%# <%= link_to "delete", review, method: :delete, %>
                                 data: { confirm: "You sure?" }, class: "btn btn-danger" %>
-        <% end %>
-        </div>
+        <%# <% end %> %>
+        </div> -->
       </div>
     </div>
       <% end %>
