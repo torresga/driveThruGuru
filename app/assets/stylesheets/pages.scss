@@ -23,7 +23,7 @@ main {
   font-weight: bold;
 }
 
-.card-text {
+.card-text-categories {
   position: absolute;
   bottom: 0;
 }
@@ -50,27 +50,4 @@ main {
     text-decoration: none;
     background-color: #0056b3;
     border: #0056b3;
-}
-
-.tag_list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.tag_item {
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
-  display: inline-block;
-  margin: 0.25em;
-  padding: 0.25em;
-}
-
-.search_result {
-  padding-bottom: 2em;
-  margin-bottom: 2.5em;
-  border-bottom: 1px solid rgba(38, 202, 217, 0.5);
-}
-
-.restaurant_info {
-  padding-bottom: 1em;
 }
