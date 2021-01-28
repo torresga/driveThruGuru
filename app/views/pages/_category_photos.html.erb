@@ -3,7 +3,7 @@
     <div class="card">
       <%= image_tag "#{category.gsub(/\s*/, "")}.jpg", class: "card-img" %>
       <div class="card-img-overlay">
-        <p class="card-text white-text">
+        <p class="card-text white-text card-text-categories">
           <small class="font-weight-bold">
             <%= sanitize attribution_text(category) %>
           </small>
