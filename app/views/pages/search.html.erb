@@ -1,44 +1,15 @@
+<%= render 'layouts/nav' %>
 <main>
   <!-- Map -->
-  <section class="container">
-   <div id="map" style='width: 800px; height: 500px;'></div>
+  <section>
+   <div id="map" style="width: 100%; height: 500px"></div>
    </section>
    <!-- End Map -->
    <!-- Search results -->
-   <section class="container">
-   <ol class="search_results">
-     <% @search.each do |restaurant| %>
-     <li class="search_result">
-      <div class="restaurant_info">
-        <h2><%= link_to restaurant.name, restaurant_path(restaurant.id) %></h2>
-        <div>
-          <% restaurant.categories.map(&:name).each do |category| %>
-          <span><%= link_to category, search_path({restaurant: {name: category}}) %>, </span>
-          <% end %>
-        </div>
-        <div>__ miles away</div>
-        <% if total_ratings(restaurant.reviews) > 0 %>
-          <div>Overall Rating: <%= average_rating(sum_of_ratings(restaurant.reviews), total_ratings(restaurant.reviews))  %> (<%= restaurant.reviews.count %> reviews)</div>
-        <% end %>
-       <div><%= restaurant.address %></div>
-       <div><%= restaurant.phone_number %></div>
-       </div>
-
-       <% if restaurant.reviews.tag_counts.count > 0 %>
-       <div class="card">
-         <div class="card-body">
-           <h5 class="card-title">What users said about this location...</h5>
-           <ul class="tag_list">
-             <% tag_cloud restaurant.reviews.tag_counts, [] do |tag, _| %>
-             <li class="tag_item"><%= tag.name %></li>
-             <% end %>
-           </ul>
-         </div>
-       </div>
-       <% end %>
-     </li>
+   <section class="container-fluid">
+     <% @search.each_with_index do |restaurant, index| %>
+      <%= render partial: 'search_result', locals: { restaurant: restaurant, index: index } %>
      <% end %>
-   </ol>
    </section>
    <!-- End Search Results -->
 </main>
@@ -77,7 +48,7 @@
           infowindow.open(map, marker);
         });
       } else {
-        alert("Geocode was not successful for the following reason: " + status);
+        // alert("Geocode was not successful for the following reason: " + status);
       }
     });
   }
