@@ -3,7 +3,13 @@ a {
 }
 
 header {
-  padding-bottom: 5em;
+  background-color: #e9ecef;
+  padding-bottom: 3em;
+}
+
+main {
+  margin-top: 3em;
+  margin-bottom: 3em;
 }
 
 .navbar {
@@ -11,6 +17,39 @@ header {
   a {
     color: white;
   }
+}
+
+.nav-link {
+  font-weight: bold;
+}
+
+.card-text {
+  position: absolute;
+  bottom: 50px;
+}
+
+.white-text {
+  color: #fff;
+  a {
+    color: #fff;
+  }
+}
+
+.input-group-text {
+  background-color: #fff;
+}
+
+.btn-search {
+  color: #fff;
+  background-color: #d93526;
+  border-color: #d93526;
+}
+
+.btn-search:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #0056b3;
+    border: #0056b3;
 }
 
 .tag_list {
