@@ -1,13 +1,16 @@
-<main>
+<header>
+  <nav class="nav justify-content-end">
+    <%= link_to "Log in", login_path, class: "nav-link" %>
+    <%= link_to "Sign up", signup_path, class: "nav-link" %>
+  </nav>
   <section class="jumbotron text-center">
-    <div class="container-fluid">
+    <div class="container">
       <h1>Search for a Drive Thru</h1>
-		<%= form_tag "/search", method: "get" do %>
-			<div class="form-row">
-				<div class="col-md-3">
+		<%= form_tag "/search", method: "get", class: "form-inline justify-content-center" do %>
+          <%= label_tag "Pick a chain", nil, class: "sr-only" %>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<%= label_tag :chain %>
+							<span class="input-group-text">Chain</span>
 						</div>
 						<%= select_tag 'restaurant[chain]', options_for_select([
             ["McDonald's", 'mcdonalds'],
@@ -27,36 +30,32 @@
             ["Other", 'other']
             ]), {include_blank: true, class: 'form-control'} %>
 					</div>
-				</div>
-				<div class="col-md-3">
+          <%= label_tag "Enter a category", nil, class: "sr-only" %>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<%= label_tag :name, "Categories" %>
+							<span class="input-group-text">Categories</span>
 						</div>
 						<%= select_tag 'restaurant[name]', options_for_select(Category.all), {include_blank: true, class: 'form-control'} %>
 					</div>
-				</div>
-				<div class="col-md-3">
+          <%= label_tag "Enter the location", nil, class: "sr-only" %>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<%= label_tag :address %>
+							<span class="input-group-text">Near</span>
 						</div>
 						<%= text_field_tag 'restaurant[address]', nil, class: 'form-control' %>
+            <div class="input-group-append">
+              <%= submit_tag 'Find A Drive Thru', class: "btn btn-search" %>
+            </div>
 					</div>
-				</div>
-        <div class="col-md-3">
-			    <%= submit_tag 'Find A Drive Thru' %>
-        </div>
-      </div>
 		<% end %>
     </div>
     </section>
-    <section>
-      <h2>Or search by category</h2>
-      <div class="row">
-        <%= render 'category_photos' %>
-      </div>
-    </section>
-	</main>
-	<footer> </footer>
-</div>
+</header>
+
+<main class="container text-center">
+  <h2>Or Search by Category</h2>
+  <div class="row mt-5">
+    <%= render 'category_photos' %>
+  </div>
+</main>
+<footer> </footer>
