@@ -1,0 +1,9 @@
+<% Category.all.map(&:name).each do |category| %>
+  <div class="col-md-4">
+    <h3>
+      <%= link_to category, search_path({restaurant: {name: category}}) %>
+    </h3>
+    <%= image_tag "#{category.gsub(/\s*/, "")}.jpg" %>
+    <%= sanitize attribution_text(category) %>
+  </div>
+<% end %>
