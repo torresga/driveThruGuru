@@ -40,6 +40,6 @@ module PagesHelper
       }
     }
 
-    "<p class='small'>Photo by <a href='#{attributions[category_name.to_sym][:url]}'>#{attributions[category_name.to_sym][:photographer]}</a> on Unsplash</p>"
+    "Photo by <a href='#{attributions[category_name.to_sym][:url]}'>#{attributions[category_name.to_sym][:photographer]}</a> on Unsplash"
   end
 end
