@@ -1,0 +1,46 @@
+<div class="card mb-3">
+<div class="row no-gutters">
+    <div class="col-md-2">
+      <img src="..." class="card-img" alt="...">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title">
+          <span><%= index + 1 %>.</span>
+          <%= link_to restaurant.name, restaurant_path(restaurant.id) %>
+        </h5>
+
+        <p class="card-text">
+        <% restaurant.categories.map(&:name).each do |category| %>
+          <span>
+            <%= link_to category, search_path({restaurant: {name: category}}) %>
+          </span>
+        <% end %>
+        </p>
+
+        <% if total_ratings(restaurant.reviews) > 0 %>
+          <p class="card-text">Overall Rating: <%= average_rating(sum_of_ratings(restaurant.reviews), total_ratings(restaurant.reviews))  %> (<%= restaurant.reviews.count %> reviews)</p>
+        <% end %>
+
+        <p class="card-text">
+          <%= restaurant.address %>
+        </p>
+
+        <p class="card-text">
+          <%= restaurant.phone_number %>
+        </p>
+     <% if restaurant.reviews.tag_counts.count > 0 %>
+       <div>
+         <h5>What users said about this location...</h5>
+         <ul>
+           <% tag_cloud restaurant.reviews.tag_counts, [] do |tag, _| %>
+           <li><%= tag.name %></li>
+           <% end %>
+         </ul>
+       </div>
+     <% end %>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
