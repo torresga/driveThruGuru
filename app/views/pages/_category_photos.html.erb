@@ -1,9 +1,17 @@
 <% Category.all.map(&:name).each do |category| %>
-  <div class="col-md-4">
-    <h3>
-      <%= link_to category, search_path({restaurant: {name: category}}) %>
-    </h3>
-    <%= image_tag "#{category.gsub(/\s*/, "")}.jpg" %>
-    <%= sanitize attribution_text(category) %>
+  <div class="col-md-4 col-sm-6 mb-3">
+    <div class="card">
+      <%= image_tag "#{category.gsub(/\s*/, "")}.jpg", class: "card-img" %>
+      <div class="card-img-overlay">
+        <p class="card-text white-text">
+          <small class="font-weight-bold">
+            <%= sanitize attribution_text(category) %>
+          </small>
+        </p>
+      </div>
+      <h3>
+        <%= link_to category, search_path({restaurant: {name: category}}) %>
+      </h3>
+    </div>
   </div>
 <% end %>
