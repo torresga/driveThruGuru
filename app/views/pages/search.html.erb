@@ -6,7 +6,7 @@
    </section>
    <!-- End Map -->
    <!-- Search results -->
-   <section class="container-fluid">
+   <section class="container-fluid mt-3">
      <% @search.each_with_index do |restaurant, index| %>
       <%= render partial: 'search_result', locals: { restaurant: restaurant, index: index } %>
      <% end %>
