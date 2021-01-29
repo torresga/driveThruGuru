@@ -1,0 +1,40 @@
+<%= form_tag "/search", method: "get", class: "row" do %>
+   <div class="col-lg-3 mx-lg-n2">
+      <%= label_tag "Pick a chain", nil, class: "sr-only" %>
+      <div class="input-group">
+        <%= select_tag 'restaurant[chain]', options_for_select([
+        ["McDonald's", 'mcdonalds'],
+        ["Starbucks", 'starbucks'],
+        ["Taco Bell", 'taco_bell'],
+        ["Chick-fil-A", 'chick_fil_a'],
+        ["Wendy's", 'wendys'],
+        ["Burger King", 'burger_king'],
+        ["Dunkin'", 'dunkin'],
+        ["Panera Bread", 'panera'],
+        ["Sonic Drive-in", 'sonic'],
+        ["KFC", 'kfc'],
+        ["Arby's", 'arbys'],
+        ["Dairy Queen", 'dairy_queen'],
+        ["Jack In The Box", 'jack_in_the_box'],
+        ["Popeyes", 'popeyes'],
+        ["Other", 'other']
+        ], "Chain"), {class: 'form-control'} %>
+      </div>
+  </div>
+  <div class="col-lg-3 mx-lg-n2">
+    <%= label_tag "Enter a category", nil, class: "sr-only" %>
+    <%= select_tag 'restaurant[name]', options_for_select(Category.all, "Category"), {class: 'form-control'} %>
+  </div>
+  <div class="col-lg-6 mx-lg-n2">
+    <%= label_tag "Enter the location", nil, class: "sr-only" %>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Near</span>
+      </div>
+      <%= text_field_tag 'restaurant[address]', nil, class: 'form-control' %>
+      <div class="input-group-append">
+        <%= submit_tag 'Find A Drive Thru', class: "btn btn-search" %>
+      </div>
+    </div>
+  </div>
+<% end %>
