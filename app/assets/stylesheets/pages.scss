@@ -1,3 +1,5 @@
+// Shared styles
+
 a {
   color: #d93526;
 }
@@ -19,26 +21,6 @@ main {
   }
 }
 
-.nav-link {
-  font-weight: bold;
-}
-
-.card-text-categories {
-  position: absolute;
-  bottom: 0;
-}
-
-.white-text {
-  color: #fff;
-  a {
-    color: #fff;
-  }
-}
-
-.input-group-text {
-  background-color: #fff;
-}
-
 .btn-search {
   color: #fff;
   background-color: #d93526;
@@ -50,4 +32,51 @@ main {
     text-decoration: none;
     background-color: #0056b3;
     border: #0056b3;
+}
+
+// Home Page
+.white-text {
+  color: #fff;
+  a {
+    color: #fff;
+  }
+}
+
+.input-group-text {
+  background-color: #fff;
+}
+
+.card-text-categories {
+  position: absolute;
+  bottom: 0;
+}
+
+.nav-link {
+  font-weight: bold;
+}
+
+// Search Page
+.tags-title {
+  font-size: 0.9rem;
+}
+
+.tags {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style-type: none;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 5px;
+    border-radius: 0.25rem;
+    margin-bottom: 5px;
+    font-size: 0.75rem;
+  }
+}
+
+.search-result-address {
+  text-align: left;
+  @media (min-width: 575px) {
+    text-align: right;
+  }
 }
