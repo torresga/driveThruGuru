@@ -1,3 +1,13 @@
+<%= render "layouts/nav" %>
+<div>
+<iframe
+width="100%"
+height="500"
+frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>
+  &q=<%= @restaurant.name %> <%= @restaurant.address %>" allowfullscreen>
+</iframe>
+</div>
 <div class="container-fluid">
   <header class="restaurant_header">
     <h1><%= @restaurant.name %></h1>
@@ -7,22 +17,19 @@
     <% end %>
     <div>
       <% @restaurant.categories.map(&:name).each do |category| %>
-      <span><%= link_to category, search_path({restaurant: {name: category}}) %>, </span>
+      <span><%= link_to category, search_path({restaurant: {name: category}}) %><%= "," unless category == @restaurant.categories.map(&:name).last %> </span>
       <% end %>
 
       <% if total_ratings(@restaurant.reviews) > 0 %>
         <div>Overall Rating: <%= average_rating(sum_of_ratings(@restaurant.reviews), total_ratings(@restaurant.reviews))  %></div>
       <% end %>
     </div>
-    <iframe
-    width="600"
-    height="450"
-    frameborder="0" style="border:0"
-    src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>
-      &q=<%= @restaurant.name %> <%= @restaurant.address %>" allowfullscreen>
-    </iframe>
-
-    <section>
+    <div>
+      <%= link_to "Write a Review", new_review_path(restaurant_id: params[:id]), class: 'btn btn-primary mt-3 mb-3' %>
+    </div>
+  </header>
+  <main>
+    <section class="border-top mt-3 pt-3">
       <h2>Location and Hours</h2>
     <div class="row">
       <div class="col">
@@ -51,20 +58,16 @@
       </div>
       </div>
       </section>
-      <div>
-        <%= link_to "Write a Review", new_review_path(restaurant_id: params[:id]), class: 'btn btn-primary mt-3 mb-3' %>
+      <section class="border-top mt-3 pt-3">
+        <h2>What users said about this location</h2>
+        <ul class="tag_list">
+          <% tag_cloud @restaurant.reviews.tag_counts, [] do |tag, _| %>
+          <li class="tag_item"><%= tag.name %></li>
+          <% end %>
+        </ul>
+      </section>
 
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">What users said about this location...</h5>
-          <ul class="tag_list">
-            <% tag_cloud @restaurant.reviews.tag_counts, [] do |tag, _| %>
-            <li class="tag_item"><%= tag.name %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-
+      <section class="border-top mt-3 pt-3"">
       <% if @restaurant.reviews.select { |review| review.images.attached? }.count > 0 %>
       <div>
         <h2>User Photos</h2>
@@ -73,8 +76,8 @@
         <% end %>
       </div>
       <% end %>
-  </header>
-  <main>
+      </section>
+      <section class="border-top mt-3 pt-3">
     <h2>Reviews</h2>
     <% if @restaurant.reviews.count > 0 %>
       <% @restaurant.reviews.each do |review| %>
@@ -132,5 +135,6 @@
     <% else %>
       <p>No reviews found!</p>
     <% end %>
+    </section>
   </main>
 </div>
