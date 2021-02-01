@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Yelp-like clone to review and rate drive-throughs.
 
-Things you may want to cover:
+Can be viewed here: [Link to DriveThruGuru](https://evening-oasis-05220.herokuapp.com)
 
-* Ruby version
+To install locally:
 
-* System dependencies
+1. Fork or clone project
+2. Run `bundle install`
+3. Run `rails server`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+That should be it! 
