@@ -1,0 +1,48 @@
+<div class="review mt-3 mb-4">
+  <div class="row">
+    <div class="col">
+      <div class="media">
+        <%= image_tag review.user.avatar, size: "75x75" %>
+        <div class="media-body ml-3">
+          <p class="mt-0 font-weight-bold"><%= link_to review.user.name, user_path(review.user) %></p>
+          <p class="mt-n3"><%= review.user.location %></p>
+        </div>
+      </div>
+      <div class="review-body mt-1">
+        <div>
+          <span><%= review.user.created_at.strftime("%F") %></span>
+          <% if review.rating %>
+            <span>Rating: <%= review.rating.rating %></span>
+          <% end %>
+        </div>
+
+        <% if review.tag_list.count > 0 %>
+        <div>
+          <ul class="tags mt-1 mb-1">
+          <% review.tag_list.each do |tag| %>
+            <li><%= tag %></li>
+          <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <div>
+          <%= review.body %>
+        </div>
+      </div>
+
+      <% if review.images.attached? %>
+      <div>
+        <% review.images.each do |image| %>
+          <%= image_tag image, size: "200", class: 'img-responsive img-thumbnail' %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <!-- <div class="col">
+    <%# <% if current_user?(review.user) || current_user.admin? %> %>
+      <%# <%= link_to "delete", review, method: :delete, %>
+                            data: { confirm: "You sure?" }, class: "btn btn-danger" %>
+    <%# <% end %> %>
+    </div> -->
+  </div>
+</div>
