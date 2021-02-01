@@ -11,10 +11,6 @@ src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_MAPS_API_KEY
 <div class="container-fluid">
   <header class="restaurant_header">
     <h1><%= @restaurant.name %></h1>
-    <% if logged_in? && current_user.admin? %>
-      <%= link_to "delete", @restaurant, method: :delete,
-                          data: { confirm: "You sure?" }, class: "btn btn-danger" %>
-    <% end %>
     <div>
       <% @restaurant.categories.map(&:name).each do |category| %>
       <span><%= link_to category, search_path({restaurant: {name: category}}) %><%= "," unless category == @restaurant.categories.map(&:name).last %> </span>
@@ -26,6 +22,10 @@ src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_MAPS_API_KEY
     </div>
     <div>
       <%= link_to "Write a Review", new_review_path(restaurant_id: params[:id]), class: 'btn btn-primary mt-3 mb-3' %>
+      <% if logged_in? && current_user.admin? %>
+        <%= link_to "Delete Restaurant", @restaurant, method: :delete,
+                            data: { confirm: "You sure?" }, class: "btn btn-danger" %>
+      <% end %>
     </div>
   </header>
   <main>
@@ -60,9 +60,9 @@ src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_MAPS_API_KEY
       </section>
       <section class="border-top mt-3 pt-3">
         <h2>What users said about this location</h2>
-        <ul class="tag_list">
+        <ul class="tags">
           <% tag_cloud @restaurant.reviews.tag_counts, [] do |tag, _| %>
-          <li class="tag_item"><%= tag.name %></li>
+          <li><%= tag.name %></li>
           <% end %>
         </ul>
       </section>
@@ -81,56 +81,7 @@ src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_MAPS_API_KEY
     <h2>Reviews</h2>
     <% if @restaurant.reviews.count > 0 %>
       <% @restaurant.reviews.each do |review| %>
-    <div class="review">
-      <div class="row">
-        <div class="col">
-          <div class="media">
-            <%= image_tag review.user.avatar, size: "75x75" %>
-            <div class="media-body ml-3">
-              <p class="mt-0 font-weight-bold"><%= link_to review.user.name, user_path(review.user) %></p>
-              <p class="mt-n3"><%= review.user.location %></p>
-            </div>
-          </div>
-          <div class="review-body mt-3">
-            <div>
-              <span><%= review.user.created_at.strftime("%F") %></span>
-              <% if review.rating %>
-                <span>Rating: <%= review.rating.rating %></span>
-              <% end %>
-            </div>
-
-            <% if review.tag_list.count > 0 %>
-            <div class="card mb-3">
-              <div class="card-body">
-                <ul class="tag_list">
-                <% review.tag_list.each do |tag| %>
-                  <li class="tag_item"><%= tag %></li>
-                <% end %>
-                </ul>
-              </div>
-            </div>
-            <% end %>
-            <div>
-              <%= review.body %>
-            </div>
-          </div>
-
-          <% if review.images.attached? %>
-          <div>
-            <% review.images.each do |image| %>
-              <%= image_tag image, size: "500x500" %>
-            <% end %>
-          </div>
-          <% end %>
-        </div>
-        <!-- <div class="col">
-        <%# <% if current_user?(review.user) || current_user.admin? %> %>
-          <%# <%= link_to "delete", review, method: :delete, %>
-                                data: { confirm: "You sure?" }, class: "btn btn-danger" %>
-        <%# <% end %> %>
-        </div> -->
-      </div>
-    </div>
+        <%= render partial: 'review', locals: { review: review } %>
       <% end %>
     <% else %>
       <p>No reviews found!</p>
