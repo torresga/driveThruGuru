@@ -58,6 +58,8 @@ src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_MAPS_API_KEY
       </div>
       </div>
       </section>
+
+      <% if @restaurant.reviews.tag_counts.count > 0 %>
       <section class="border-top mt-3 pt-3">
         <h2>What users said about this location</h2>
         <ul class="tags">
@@ -66,17 +68,16 @@ src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_MAPS_API_KEY
           <% end %>
         </ul>
       </section>
+      <% end %>
 
-      <section class="border-top mt-3 pt-3"">
       <% if @restaurant.reviews.select { |review| review.images.attached? }.count > 0 %>
-      <div>
+      <section class="border-top mt-3 pt-3"">
         <h2>User Photos</h2>
         <% @restaurant.reviews.select { |review| review.images.attached? }.map { |review| review.images }.flatten.each do |image| %>
           <%= image_tag image, size: "200x200", class: 'img-thumbnail' %>
         <% end %>
-      </div>
-      <% end %>
       </section>
+      <% end %>
       <section class="border-top mt-3 pt-3">
     <h2>Reviews</h2>
     <% if @restaurant.reviews.count > 0 %>
