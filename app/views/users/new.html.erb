@@ -1,5 +1,7 @@
-<div class="container">
-  <h1>Enter a new user</h1>
+<%= render 'layouts/nav' %>
+<div class="container mt-5 mb-1">
+  <h1 class="text-center">Sign up for DriveThruGuru</h1>
+  <div class="d-flex justify-content-center mt-5">
   <%= form_with(model: @user, local: true) do |f| %>
     <div class="form-group">
       <%= f.label :name %>
@@ -31,6 +33,7 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
     </div>
 
-    <%= f.submit 'Create user' %>
+    <%= f.submit 'Create user', class: "btn btn-search" %>
   <% end %>
+  </div>
 </div>
