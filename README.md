@@ -10,4 +10,6 @@ To install locally:
 2. Run `bundle install`
 3. Run `rails server`
 
-That should be it! 
+That should be it!
+
+CHange the readme!!
